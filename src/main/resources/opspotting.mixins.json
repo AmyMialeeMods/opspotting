@@ -7,8 +7,6 @@
     "PlayerManagerMixin",
     "ServerChunkLoadingManagerMixin"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }

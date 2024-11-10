@@ -2,24 +2,35 @@
   "schemaVersion": 1,
   "id": "opspotting",
   "version": "${version}",
-  "name": "opspotting",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "name": "OpSpotting",
+  "description": "Allows OPs to use higher render distances",
+  "authors": [
+    "AmyMialee"
+  ],
+  "contact": {
+    "email": "opspotting@amymialee.xyz",
+    "homepage": "https://amymialee.xyz",
+    "irc": "",
+    "sources": "https://github.com/AmyMialeeMods/opspotting",
+    "issues": "https://github.com/AmyMialeeMods/opspotting/issues"
+  },
   "license": "All-Rights-Reserved",
   "icon": "assets/opspotting/icon.png",
   "environment": "server",
-  "entrypoints": {
-    "main": [
-      "xyz.amymialee.opspotting.Opspotting"
-    ]
-  },
   "mixins": [
     "opspotting.mixins.json"
   ],
-  "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/opspotting",
+        "modmenu.discord": "https://discord.amymialee.xyz",
+        "modmenu.kofi": "https://ko-fi.com/amymialee",
+        "modmenu.modrinth": "https://modrinth.com/project/opspotting",
+        "modmenu.twitter": "https://x.com/amy_mialee",
+        "modmenu.wiki": "https://modrinth.com/project/opspotting"
+      },
+      "update_checker": true
+    }
   }
 }

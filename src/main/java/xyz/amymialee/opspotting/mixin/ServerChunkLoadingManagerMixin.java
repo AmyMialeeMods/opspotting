@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ServerChunkLoadingManager.class)
 public class ServerChunkLoadingManagerMixin {
     @WrapOperation(method = "getViewDistance", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;clamp(III)I"))
-    private int a(int value, int min, int max, @NotNull Operation<Integer> original, @NotNull ServerPlayerEntity player) {
-        return original.call(value, min, player.hasPermissionLevel(4) ? 24 : max);
+    private int opspotting$playerpreference(int value, int min, int max, @NotNull Operation<Integer> original, @NotNull ServerPlayerEntity player) {
+        return player.hasPermissionLevel(4) ? value : original.call(value, min, max);
     }
 }
