@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "opspotting",
+  "version": "${version}",
+  "name": "opspotting",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/opspotting/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "xyz.amymialee.opspotting.Opspotting"
+    ]
+  },
+  "mixins": [
+    "opspotting.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
