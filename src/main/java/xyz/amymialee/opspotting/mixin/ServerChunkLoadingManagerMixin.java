@@ -2,6 +2,7 @@ package xyz.amymialee.opspotting.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.network.packet.s2c.play.ChunkDataS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
@@ -16,5 +17,15 @@ public class ServerChunkLoadingManagerMixin {
     @WrapOperation(method = "method_17219", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ThreadedAnvilChunkStorage;isWithinDistance(IIIII)Z", ordinal = 1))
     private boolean opspotting$maxed(int x1, int z1, int x2, int z2, int distance, @NotNull Operation<Boolean> original, ChunkPos  chunkPos, int i, MutableObject<ChunkDataS2CPacket> mutableObject, @NotNull ServerPlayerEntity player) {
         return original.call(x1, z1, x2, z2, player.hasPermissionLevel(4) ? 32 : distance);
+    }
+
+    @WrapOperation(method = "getPlayersWatchingChunk(Lnet/minecraft/util/math/ChunkPos;Z)Ljava/util/List;", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ThreadedAnvilChunkStorage;isWithinDistance(IIIII)Z"))
+    public boolean opspotting$maxed(int x1, int z1, int x2, int z2, int distance, @NotNull Operation<Boolean> original, @Local(ordinal = 0) @NotNull ServerPlayerEntity player) {
+        return original.call(x1, z1, x2, z2, player.hasPermissionLevel(4) ? 32 : distance);
+    }
+
+    @WrapOperation(method = "handlePlayerAddedOrRemoved", at = @At(value = "FIELD", target = "Lnet/minecraft/server/world/ThreadedAnvilChunkStorage;watchDistance:I"))
+    public int opspotting$maxed(ThreadedAnvilChunkStorage instance, Operation<Integer> original, @NotNull ServerPlayerEntity player) {
+        return player.hasPermissionLevel(4) ? 32 : original.call(instance);
     }
 }
